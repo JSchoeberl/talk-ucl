@@ -1,0 +1,172 @@
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/jupyter_core/utils/__init__.py", line 154, in wrapped
+    asyncio.get_running_loop()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+RuntimeError: no running event loop
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+    ~~~~~~~~~^
+        nb,
+        ^^^
+    ...<4 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/jupyter_core/utils/__init__.py", line 158, in wrapped
+    return loop.run_until_complete(inner)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+        cell, index, execution_count=self.code_cells_executed + 1
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+gfu = GridFunction(fes)
+
+with TaskManager():
+    solvers.Newton(a=bfa, u=gfu, maxerr=1e-8, printing=True, inverse="sparsecholesky")
+------------------
+
+----- stdout -----
+Newton iteration  0
+----- stdout -----
+err =  0.9613019521943723
+Newton iteration  1
+----- stdout -----
+err =  1.1010809564879713
+Newton iteration  2
+----- stdout -----
+err =  0.3730452399564788
+Newton iteration  3
+----- stdout -----
+err =  1.0808917173555272
+Newton iteration  4
+----- stdout -----
+err =  12.432542217987441
+Newton iteration  5
+----- stdout -----
+err =  53.68970913941727
+Newton iteration  6
+----- stdout -----
+err =  285.98452881496104
+Newton iteration  7
+----- stdout -----
+err =  28052.33048918913
+Newton iteration  8
+----- stdout -----
+err =  217439.15828474736
+Newton iteration  9
+----- stdout -----
+err =  768045054.297512
+Newton iteration  10
+----- stdout -----
+err =  15761153801.713846
+Newton iteration  11
+----- stdout -----
+err =  192810032609440.22
+Newton iteration  12
+----- stdout -----
+err =  5.640068812363572e+19
+Newton iteration  13
+----- stdout -----
+err =  4.218175228424148e+25
+Newton iteration  14
+----- stdout -----
+err =  2.7606166943213266e+34
+Newton iteration  15
+----- stdout -----
+err =  5.955892445016996e+41
+Newton iteration  16
+----- stdout -----
+err =  4.5444151183117266e+48
+Newton iteration  17
+----- stdout -----
+err =  6.435394551620589e+58
+Newton iteration  18
+----- stdout -----
+err =  1.5279996733082377e+71
+Newton iteration  19
+----- stdout -----
+err =  2.7512385409564766e+83
+Newton iteration  20
+----- stdout -----
+err =  3.0237608677652042e+93
+Newton iteration  21
+----- stdout -----
+err =  1.1971941908586898e+101
+Newton iteration  22
+----- stdout -----
+err =  6.245954766016369e+107
+Newton iteration  23
+----- stdout -----
+err =  4.897873728812323e+112
+Newton iteration  24
+----- stdout -----
+err =  1.0402924333650596e+118
+Newton iteration  25
+----- stdout -----
+err =  5.0959483331597256e+123
+Newton iteration  26
+----- stdout -----
+err =  3.94310845537971e+132
+Newton iteration  27
+----- stdout -----
+err =  2.3863946537012145e+139
+Newton iteration  28
+----- stdout -----
+err =  3.9568562163933813e+146
+Newton iteration  29
+----- stdout -----
+err =  nan
+Newton iteration  30
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mNgException[39m                               Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[7][39m[32m, line 4[39m
+[32m      1[39m gfu = GridFunction(fes)
+[32m      3[39m [38;5;28;01mwith[39;00m TaskManager():
+[32m----> [39m[32m4[39m     [43msolvers[49m[43m.[49m[43mNewton[49m[43m([49m[43ma[49m[43m=[49m[43mbfa[49m[43m,[49m[43m [49m[43mu[49m[43m=[49m[43mgfu[49m[43m,[49m[43m [49m[43mmaxerr[49m[43m=[49m[32;43m1e-8[39;49m[43m,[49m[43m [49m[43mprinting[49m[43m=[49m[38;5;28;43;01mTrue[39;49;00m[43m,[49m[43m [49m[43minverse[49m[43m=[49m[33;43m"[39;49m[33;43msparsecholesky[39;49m[33;43m"[39;49m[43m)[49m
+
+[36mFile [39m[32m/Applications/Netgen.app/Contents/Resources/lib/python3.14/site-packages/ngsolve/nonlinearsolvers.py:147[39m, in [36mNewton[39m[34m(a, u, freedofs, maxit, maxerr, inverse, dirichletvalues, dampfactor, printing, callback)[39m
+[32m    145[39m [38;5;28;01mif[39;00m dirichletvalues [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[32m    146[39m     solver.SetDirichlet(dirichletvalues)
+[32m--> [39m[32m147[39m [38;5;28;01mreturn[39;00m [43msolver[49m[43m.[49m[43mSolve[49m[43m([49m[43mmaxit[49m[43m=[49m[43mmaxit[49m[43m,[49m[43m [49m[43mmaxerr[49m[43m=[49m[43mmaxerr[49m[43m,[49m
+[32m    148[39m [43m                    [49m[43mdampfactor[49m[43m=[49m[43mdampfactor[49m[43m,[49m
+[32m    149[39m [43m                    [49m[43mprinting[49m[43m=[49m[43mprinting[49m[43m,[49m
+[32m    150[39m [43m                    [49m[43mcallback[49m[43m=[49m[43mcallback[49m[43m,[49m
+[32m    151[39m [43m                    [49m[43mlinesearch[49m[43m=[49m[38;5;28;43;01mFalse[39;49;00m[43m,[49m
+[32m    152[39m [43m                    [49m[43mprintenergy[49m[43m=[49m[38;5;28;43;01mFalse[39;49;00m[43m)[49m
+
+[36mFile [39m[32m/Applications/Netgen.app/Contents/Resources/lib/python3.14/site-packages/netgen/__init__.py:111[39m, in [36mTimeFunction.<locals>.retfunc[39m[34m(*args, **kwargs)[39m
+[32m    109[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mretfunc[39m(*args,**kwargs):
+[32m    110[39m     [38;5;28;01mwith[39;00m timer:
+[32m--> [39m[32m111[39m         ret = [43mfunc[49m[43m([49m[43m*[49m[43margs[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+[32m    112[39m     [38;5;28;01mreturn[39;00m ret
+
+[36mFile [39m[32m/Applications/Netgen.app/Contents/Resources/lib/python3.14/site-packages/ngsolve/nonlinearsolvers.py:39[39m, in [36mNewtonSolver.Solve[39m[34m(self, maxit, maxerr, dampfactor, printing, callback, linesearch, printenergy, print_wrong_direction)[39m
+[32m     36[39m     [38;5;28;01mif[39;00m printenergy:
+[32m     37[39m         [38;5;28mprint[39m([33m"[39m[33mEnergy: [39m[33m"[39m, a.Energy(u.vec))
+[32m---> [39m[32m39[39m [43ma[49m[43m.[49m[43mAssembleLinearization[49m[43m([49m[43mu[49m[43m.[49m[43mvec[49m[43m)[49m
+[32m     40[39m a.Apply(u.vec, r)
+[32m     42[39m [38;5;28mself[39m._UpdateInverse()
+
+[31mNgException[39m: Inverse matrix: Matrix singularin AssembleLinearization
+
+
+
