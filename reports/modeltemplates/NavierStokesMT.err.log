@@ -49,11 +49,21 @@ navstokes.SolveInitial()
 
 
 [31m---------------------------------------------------------------------------[39m
-[31mModuleNotFoundError[39m                       Traceback (most recent call last)
-[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 1[39m
-[32m----> [39m[32m1[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mngs_templates[39;00m[34;01m.[39;00m[34;01mNavierStokes[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m *
+[31mNgException[39m                               Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 5[39m
 [32m      2[39m ngsglobals.msg_level = [32m0[39m
 [32m      4[39m timestep = [32m0.001[39m
+[32m----> [39m[32m5[39m navstokes = [43mNavierStokes[49m[43m [49m[43m([49m[43mmesh[49m[43m,[49m[43m [49m[43mnu[49m[43m=[49m[32;43m0.001[39;49m[43m,[49m[43m [49m[43morder[49m[43m=[49m[32;43m4[39;49m[43m,[49m[43m [49m[43mtimestep[49m[43m [49m[43m=[49m[43m [49m[43mtimestep[49m[43m,[49m
+[32m      6[39m [43m                              [49m[43minflow[49m[43m=[49m[33;43m"[39;49m[33;43minlet[39;49m[33;43m"[39;49m[43m,[49m[43m [49m[43moutflow[49m[43m=[49m[33;43m"[39;49m[33;43moutlet[39;49m[33;43m"[39;49m[43m,[49m[43m [49m[43mwall[49m[43m=[49m[33;43m"[39;49m[33;43mwall|cyl[39;49m[33;43m"[39;49m[43m,[49m
+[32m      7[39m [43m                              [49m[43muin[49m[43m=[49m[43mCoefficientFunction[49m[43m([49m[43m [49m[43m([49m[32;43m1.5[39;49m[43m*[49m[32;43m4[39;49m[43m*[49m[43my[49m[43m*[49m[43m([49m[32;43m0.41[39;49m[43m-[49m[43my[49m[43m)[49m[43m/[49m[43m([49m[32;43m0.41[39;49m[43m*[49m[32;43m0.41[39;49m[43m)[49m[43m,[49m[43m [49m[32;43m0[39;49m[43m)[49m[43m [49m[43m)[49m[43m)[49m
+[32m      9[39m navstokes.SolveInitial()
 
-[31mModuleNotFoundError[39m: No module named 'ngs_templates'
+[36mFile [39m[32m/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/ngs_templates/NavierStokes.py:79[39m, in [36mNavierStokes.__init__[39m[34m(self, mesh, nu, inflow, outflow, wall, uin, timestep, order, volumeforce)[39m
+[32m     77[39m ul2,vl2 = VL2.TnT()
+[32m     78[39m [38;5;28mself[39m.conv_l2 = BilinearForm(VL2, nonassemble=[38;5;28;01mTrue[39;00m)
+[32m---> [39m[32m79[39m [38;5;28mself[39m.conv_l2 += SymbolicBFI([43mInnerProduct[49m[43m([49m[43mgrad[49m[43m([49m[43mvl2[49m[43m)[49m[43m*[49m[43mul2[49m[43m,[49m[43m [49m[43mul2[49m[43m)[49m[43m.[49m[43mCompile[49m[43m([49m[43mrealcompile[49m[43m=[49m[43mrealcompile[49m[43m,[49m[43m [49m[43mwait[49m[43m=[49m[38;5;28;43;01mTrue[39;49;00m[43m)[49m, bonus_intorder=order)
+[32m     80[39m [38;5;28mself[39m.conv_l2 += SymbolicBFI((-IfPos(ul2 * n, ul2*n*ul2*vl2, ul2*n*ul2.Other(bnd=[38;5;28mself[39m.uin)*vl2)).Compile(realcompile=realcompile, wait=[38;5;28;01mTrue[39;00m), element_boundary = [38;5;28;01mTrue[39;00m, bonus_intorder=order)
+[32m     82[39m [38;5;28mself[39m.convertl2 = V1.ConvertL2Operator(VL2) @ Embedding([38;5;28mself[39m.V.ndof, [38;5;28mself[39m.v1dofs).T
+
+[31mNgException[39m: problem calling compiler
 
